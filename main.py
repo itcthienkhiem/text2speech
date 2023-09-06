@@ -6,8 +6,9 @@ from typing import Union
 
 from gradio_client import Client
 from pydantic import BaseModel
-
+import requests
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 
 app = FastAPI()
 class Item(BaseModel):
@@ -25,8 +26,10 @@ async  def text_to_speech(item: Item):
         item.q,  # str in 'text' Textbox component
         api_name="/predict"
     )
-    print(result)
-    return {"Hello": "World"}
+
+
+
+    return FileResponse(result, filename='text.wav')
 
 
 # Press the green button in the gutter to run the script.
