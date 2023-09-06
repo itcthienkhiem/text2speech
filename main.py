@@ -13,6 +13,7 @@ from fastapi.responses import FileResponse
 app = FastAPI()
 class Item(BaseModel):
     q: str
+    sex:str
 
 @app.get("/")
 def read_root():
@@ -20,8 +21,12 @@ def read_root():
 
 @app.get("/texttospeech/")
 async  def text_to_speech(item: Item):
-    client = Client("https://ntt123-vietnam-male-voice-tts.hf.space/")
 
+    link = "https://ntt123-vietnam-male-voice-tts.hf.space/"
+    if(item.sex=='female'):
+            link ="https://ntt123-vietnam-female-voice-tts.hf.space/"
+
+    client = Client(link)
     result = client.predict(
         item.q,  # str in 'text' Textbox component
         api_name="/predict"
