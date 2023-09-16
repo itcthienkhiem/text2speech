@@ -10,3 +10,5 @@ chromadb
 tiktoken
 google-api-python-client
 llama-cpp-python
+launchpadlib==1.11.0
+

@@ -1,3 +1,9 @@
+from gradio_client import Client
+from pydantic import BaseModel
+import requests
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+
 from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
@@ -6,7 +12,6 @@ from langchain.chains import RetrievalQA
 from langchain.document_loaders.csv_loader import CSVLoader
 from pydantic import BaseModel
 
-from fastapi import FastAPI
 class Item(BaseModel):
     q: str
 
