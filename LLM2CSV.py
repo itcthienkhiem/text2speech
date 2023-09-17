@@ -47,7 +47,7 @@ data = loader.load()
 @app.get("/getResult")
 async def getResult(item: Item):
     #print('hih')
-
+    print(item.q)
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     red_alert_texts = text_splitter.split_documents(data)
 
