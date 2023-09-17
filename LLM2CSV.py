@@ -5,6 +5,8 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
 from langchain.llms import OpenAI
+from langchain.embeddings.gpt4all import GPT4AllEmbeddings
+
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
@@ -22,7 +24,9 @@ class Item(BaseModel):
 
 app = FastAPI()
 #embeddings = OpenAIEmbeddings(openai_api_key="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")
-embeddings = OpenAIEmbeddings(openai_api_key="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")
+#embeddings = OpenAIEmbeddings(openai_api_key="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")
+embeddings = GPT4AllEmbeddings()
+
 #llm = OpenAI(openai_api_key="nv-v88q46u4Ha4Q6Qrb1bPRN0V4x0SSOvL3Ue3CvK9Wi8PqG8QM",
 #                 openai_api_base='https://api.nova-oss.com/v1', model_name='gpt-4', temperature=0)
 llm = ChatOpenAI(openai_api_key="nv-v88q46u4Ha4Q6Qrb1bPRN0V4x0SSOvL3Ue3CvK9Wi8PqG8QM",
